@@ -2,7 +2,6 @@ import { getStore } from "@netlify/blobs";
 import { getUser } from "@netlify/identity";
 
 const sections = new Set(["events", "jobs", "projects", "network"]);
-const contentStore = getStore("igjvlab-content");
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -23,6 +22,9 @@ export default async (request) => {
   const section = url.searchParams.get("section");
   if (!sections.has(section)) return json({ error: "Bagian konten tidak dikenal." }, 400);
 
+  // Netlify rotates the Blobs context token for each invocation. Create a
+  // store for this request so a warm function never reuses an expired token.
+  const contentStore = getStore("igjvlab-content");
   const key = `section:${section}`;
   if (request.method === "GET") {
     const saved = await contentStore.get(key);
@@ -48,4 +50,3 @@ export default async (request) => {
   await contentStore.set(key, JSON.stringify(entries));
   return json({ ok: true, count: entries.length });
 };
-
