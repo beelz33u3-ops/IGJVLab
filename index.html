@@ -1,0 +1,2891 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGJVLab - International Green Job Virtual Lab</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #054837;
+      --primary-dark: #032e23;
+      --primary-light: #0d6e54;
+      --accent-mint: #22c59b;
+      --accent-lime: #b8f03b;
+      --accent-teal: #089484;
+      --accent-gold: #f59e0b;
+      --accent-blue: #2563eb;
+      --bg-cream: #f4faf6;
+      --bg-glass: rgba(255, 255, 255, 0.88);
+      --card-border: rgba(5, 72, 55, 0.1);
+      --text-main: #0c2b22;
+      --text-muted: #486e62;
+      --text-sub: #71958a;
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 30px;
+      --radius-full: 9999px;
+      --shadow-soft: 0 10px 30px rgba(5, 72, 55, 0.07);
+      --shadow-hover: 0 20px 45px rgba(5, 72, 55, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-cream);
+      line-height: 1.5;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(34, 197, 155, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(184, 240, 59, 0.06) 0%, transparent 40%);
+    }
+
+    /* Ambient Botanical Leaf Accents */
+    .leaf-deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 10;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+      animation: floatSlow 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatSlow {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(12px) rotate(3deg); }
+    }
+
+    .leaf-top-left {
+      top: -30px;
+      left: -30px;
+      width: 130px;
+    }
+
+    .leaf-top-right {
+      top: 60px;
+      right: -20px;
+      width: 150px;
+    }
+
+    .leaf-bottom-left {
+      bottom: 20px;
+      left: 10px;
+      width: 110px;
+    }
+
+    .container {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+    }
+
+    /* Header Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      height: 82px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(5, 72, 55, 0.04);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .brand-logo-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.6px;
+      line-height: 1.1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-title span {
+      color: var(--accent-teal);
+    }
+
+    .brand-subtitle {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.3px;
+    }
+
+    .nav-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+      background: #e9f5ef;
+      padding: 6px 8px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(5, 72, 55, 0.08);
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      padding: 8px 20px;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .nav-btn:hover {
+      color: var(--primary);
+    }
+
+    .nav-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(5, 72, 55, 0.25);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-search {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--card-border);
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .btn-search:hover {
+      color: var(--primary);
+      border-color: var(--accent-mint);
+    }
+
+    .btn-login {
+      padding: 9px 22px;
+      border: 1.5px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      border-radius: var(--radius-full);
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .btn-login:hover {
+      background: #eaf6f0;
+    }
+
+    .btn-register {
+      padding: 10px 24px;
+      border: none;
+      background: linear-gradient(135deg, #095945, #118164);
+      color: #ffffff;
+      border-radius: var(--radius-full);
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 14px rgba(5, 72, 55, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-register:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(5, 72, 55, 0.4);
+    }
+
+    /* Views Switcher */
+    .view-content {
+      display: none;
+      animation: viewSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .view-content.active-view {
+      display: block;
+    }
+
+    @keyframes viewSlide {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ================= HOME HERO ================= */
+    .hero-wrapper {
+      position: relative;
+      background: linear-gradient(140deg, #04382b 0%, #085642 45%, #0f755a 85%, #189876 100%);
+      color: #ffffff;
+      padding: 70px 0 100px 0;
+      overflow: hidden;
+      border-bottom: 4px solid var(--accent-mint);
+    }
+
+    /* Lush background scene with forest canopy overlay */
+    .hero-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        radial-gradient(circle at 80% 25%, rgba(34, 197, 155, 0.35) 0%, transparent 50%),
+        radial-gradient(circle at 20% 75%, rgba(184, 240, 59, 0.2) 0%, transparent 45%),
+        url('images/hero.jpg') center/cover no-repeat;
+      opacity: 0.18;
+      mix-blend-mode: overlay;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(10px);
+      padding: 7px 18px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      color: #bbf7e6;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      margin-bottom: 22px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-headline {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -1.2px;
+      margin-bottom: 8px;
+    }
+
+    .hero-headline-sub {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--accent-lime);
+      display: block;
+      margin-bottom: 14px;
+      letter-spacing: -0.4px;
+    }
+
+    .hero-tagline-bar {
+      font-size: 21px;
+      font-weight: 700;
+      color: #a7f3d0;
+      margin-bottom: 18px;
+    }
+
+    .hero-body-text {
+      font-size: 16.5px;
+      color: #e2f7ed;
+      line-height: 1.65;
+      margin-bottom: 36px;
+      max-width: 530px;
+    }
+
+    .hero-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .btn-cta-emerald {
+      background: var(--accent-mint);
+      color: #032e23;
+      padding: 14px 32px;
+      border-radius: var(--radius-full);
+      font-size: 15.5px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 24px rgba(34, 197, 155, 0.45);
+    }
+
+    .btn-cta-emerald:hover {
+      background: #4ade80;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(34, 197, 155, 0.55);
+    }
+
+    .btn-cta-glass {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
+      font-size: 15.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-cta-glass:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* Hero Visual Card with High-Tech Hologram Look */
+    .hero-scene-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      padding: 12px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-photo-main {
+      width: 100%;
+      height: 400px;
+      border-radius: calc(var(--radius-lg) - 8px);
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-hud-float {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      background: rgba(3, 46, 35, 0.9);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid rgba(184, 240, 59, 0.3);
+    }
+
+    .hud-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent-mint);
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    /* 5 Main Interactive Feature Cards */
+    .pillars-dock {
+      margin-top: -46px;
+      position: relative;
+      z-index: 20;
+      margin-bottom: 70px;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .pillar-card {
+      background: var(--bg-white);
+      border-radius: var(--radius-md);
+      padding: 24px 18px;
+      box-shadow: 0 12px 30px rgba(5, 72, 55, 0.08);
+      border: 1px solid var(--card-border);
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-mint);
+    }
+
+    .pillar-card:hover::before {
+      background: linear-gradient(90deg, var(--accent-mint), var(--accent-lime));
+    }
+
+    .pillar-icon-box {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #eef9f4;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 14px;
+      transition: all 0.3s ease;
+      border: 1px solid #d9f0e6;
+    }
+
+    .pillar-card:hover .pillar-icon-box {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    .pillar-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .pillar-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* Carbon Calculator & PIO Geospasial Dashboard Showcase */
+    .dashboard-showcase {
+      padding: 20px 0 80px 0;
+    }
+
+    .sec-badge-center {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .badge-tag-leaf {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e1f5eb;
+      color: var(--primary-light);
+      padding: 6px 18px;
+      border-radius: var(--radius-full);
+      font-size: 12.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 12px;
+    }
+
+    .sec-headline-big {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.8px;
+      margin-bottom: 10px;
+    }
+
+    .sec-subtitle-text {
+      font-size: 16.5px;
+      color: var(--text-muted);
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .dashboard-duo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .dash-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dash-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .dash-pill-cat {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      background: #eef8f4;
+      color: var(--primary-light);
+      text-transform: uppercase;
+    }
+
+    .dash-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .dash-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* Calculator Widget UI */
+    .calc-screen {
+      background: linear-gradient(135deg, #053b2d, #0b5744);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .calc-gauge-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    .calc-big-stat {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--accent-lime);
+      letter-spacing: -0.5px;
+    }
+
+    .calc-slider-block {
+      margin-bottom: 16px;
+    }
+
+    .calc-slider-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #d1fae5;
+    }
+
+    .calc-slider-input {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      accent-color: var(--accent-mint);
+      cursor: pointer;
+    }
+
+    .calc-equivalent-badge {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #bbf7e6;
+    }
+
+    /* PIO Geospasial Interactive Map UI */
+    .gis-map-canvas {
+      background: #092f24;
+      border-radius: var(--radius-md);
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #145946;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .gis-radar-sweep {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      margin-top: -200px;
+      margin-left: -200px;
+      border-radius: 50%;
+      border: 1px solid rgba(34, 197, 155, 0.25);
+      pointer-events: none;
+    }
+
+    .gis-radar-sweep::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 260px; height: 260px;
+      margin-top: -130px; margin-left: -130px;
+      border-radius: 50%;
+      border: 1px solid rgba(34, 197, 155, 0.2);
+    }
+
+    .gis-marker {
+      position: absolute;
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: all 0.25s ease;
+      z-index: 10;
+    }
+
+    .gis-marker:hover {
+      transform: scale(1.1);
+      z-index: 20;
+    }
+
+    .marker-sumbar {
+      top: 36%; left: 16%;
+      background: var(--accent-mint);
+      color: #032e23;
+    }
+
+    .marker-jogja {
+      top: 60%; left: 45%;
+      background: var(--accent-lime);
+      color: #032e23;
+    }
+
+    .marker-lombok {
+      top: 50%; left: 70%;
+      background: #38bdf8;
+      color: #032e23;
+    }
+
+    .gis-hud-panel {
+      position: absolute;
+      bottom: 12px; left: 12px; right: 12px;
+      background: rgba(3, 35, 27, 0.88);
+      backdrop-filter: blur(8px);
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #8ce1ca;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Inner Page Headers (Green Jobs, Project, Network, About) */
+    .view-banner-box {
+      background: linear-gradient(135deg, #04382b 0%, #095642 60%, #127a5d 100%);
+      color: #ffffff;
+      padding: 60px 0 70px 0;
+      position: relative;
+      margin-bottom: 44px;
+      border-bottom: 3px solid var(--accent-mint);
+    }
+
+    .view-banner-tag {
+      background: rgba(255, 255, 255, 0.16);
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 800;
+      color: #a7f3d0;
+      display: inline-block;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .view-banner-title {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 8px;
+    }
+
+    .view-banner-sub {
+      font-size: 17px;
+      color: #d1fae5;
+      max-width: 620px;
+    }
+
+    /* ======= Category Filter Tabs — Sliding Active Indicator ======= */
+    .pills-scroll-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 14px;
+      margin-bottom: 36px;
+      /* hide scrollbar visually but keep functionality */
+      scrollbar-width: none;
+    }
+    .pills-scroll-bar::-webkit-scrollbar { display: none; }
+
+    /* The sliding background "glider" element */
+    .pills-scroll-bar .tab-glider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 42px;         /* will be corrected by JS */
+      border-radius: var(--radius-full);
+      background: var(--primary);
+      box-shadow: 0 4px 14px rgba(5, 72, 55, 0.25);
+      transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                  width 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                  top 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .filter-pill {
+      position: relative;
+      z-index: 1;
+      background: transparent;
+      border: 1px solid var(--card-border);
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.22s ease, border-color 0.22s ease;
+      box-shadow: none;
+    }
+
+    /* Active / hovered pill text goes white */
+    .filter-pill.active,
+    .filter-pill.pill-hovered {
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    /* Non-active pills retain a subtle border */
+    .filter-pill:not(.active):not(.pill-hovered) {
+      background: transparent;
+    }
+
+    html.dark .filter-pill {
+      border-color: rgba(34, 197, 155, 0.22);
+      color: #9fe2cb;
+    }
+    html.dark .filter-pill.active,
+    html.dark .filter-pill.pill-hovered {
+      color: #042b1f;
+      border-color: transparent;
+    }
+    html.dark .pills-scroll-bar .tab-glider {
+      background: linear-gradient(135deg, #0d8c6e, #22c59b);
+      box-shadow: 0 4px 18px rgba(34, 197, 155, 0.4);
+    }
+
+    /* 3-Column Cards Grid */
+    .cards-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 70px;
+    }
+
+    /* Job Card */
+    .pro-job-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 28px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .pro-job-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-mint);
+    }
+
+    .job-company-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .company-logo-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      font-weight: 800;
+    }
+
+    .job-role-name {
+      font-size: 18.5px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+
+    .job-corp-name {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .job-tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 20px 0;
+    }
+
+    .job-chip {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: #eef7f3;
+      color: var(--primary-light);
+    }
+
+    .btn-job-apply {
+      width: 100%;
+      padding: 12px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 14.5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-job-apply:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    /* Project Card */
+    .pro-project-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .pro-project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-card-details {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-tag-strip {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tag-bubble {
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      background: #eaf7f1;
+      color: var(--primary-light);
+    }
+
+    .project-heading {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .project-loc-tag {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-project-action {
+      margin-top: auto;
+      padding: 10px;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .btn-project-action:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Network Partner Cards */
+    .pro-partner-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 30px 24px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pro-partner-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-mint);
+    }
+
+    .partner-crest {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      border: 3px solid #e1f4ec;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+
+    .partner-title-txt {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .partner-country-txt {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+
+    .partner-tag-pill {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-light);
+      background: #eef8f4;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+    }
+
+    /* ================= STRUKTUR ORGANISASI (ABOUT) ================= */
+    .org-showcase-wrap {
+      padding: 10px 0 80px 0;
+    }
+
+    .org-level-title {
+      text-align: center;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--primary-light);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
+    .org-row-center {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    /* Executive Leadership Card */
+    .exec-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 32px 36px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 14px 35px rgba(5, 72, 55, 0.08);
+      text-align: center;
+      width: 340px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .exec-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent-mint), var(--accent-lime));
+    }
+
+    .exec-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .exec-avatar-ring {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      margin: 0 auto 16px auto;
+      background: linear-gradient(135deg, #04382b, #127a5d);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 800;
+      border: 4px solid #e1f5eb;
+      box-shadow: 0 8px 20px rgba(5, 72, 55, 0.2);
+    }
+
+    .exec-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .exec-badge {
+      display: inline-block;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #034433;
+      background: var(--accent-lime);
+      padding: 4px 16px;
+      border-radius: var(--radius-full);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .exec-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Staff Grid (5 Columns) */
+    .staff-row-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .staff-member-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 24px 16px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .staff-member-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-mint);
+    }
+
+    .staff-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      margin: 0 auto 12px auto;
+      background: linear-gradient(135deg, #095945, #1ea37f);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      border: 3px solid #e6f6f0;
+    }
+
+    .staff-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .staff-badge {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-light);
+      background: #eef8f4;
+      padding: 3px 12px;
+      border-radius: var(--radius-full);
+      display: inline-block;
+    }
+
+    /* Together Greener Banner (All views) */
+    .together-card-banner {
+      background: linear-gradient(135deg, #04382b 0%, #095945 60%, #118164 100%);
+      border-radius: var(--radius-lg);
+      padding: 56px 54px;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      margin: 70px 0 90px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 25px 50px rgba(5, 72, 55, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .together-left-content {
+      max-width: 620px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .together-headline {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 12px;
+    }
+
+    .together-subtext {
+      font-size: 16.5px;
+      color: #d1fae5;
+      margin-bottom: 26px;
+      line-height: 1.6;
+    }
+
+    .together-tags-line {
+      display: flex;
+      gap: 22px;
+    }
+
+    .tog-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #a7f3d0;
+    }
+
+    /* Footer */
+    footer {
+      background: #02231b;
+      color: #ffffff;
+      padding: 64px 0 38px 0;
+      border-top: 3px solid var(--accent-mint);
+      position: relative;
+    }
+
+    .footer-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-logo-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .footer-logo-sub {
+      font-size: 13px;
+      color: #9fe2cb;
+    }
+
+    .footer-nav-list {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .footer-nav-list a {
+      color: #d1fae5;
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .footer-nav-list a:hover {
+      color: var(--accent-lime);
+    }
+
+    .footer-bot-row {
+      padding-top: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13.5px;
+      color: #7da598;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-handwritten {
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
+      color: var(--accent-lime);
+      font-weight: 700;
+    }
+
+    /* Modal Backdrop & Dialog */
+    .app-modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(2, 35, 27, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .app-modal-backdrop.active {
+      display: flex;
+    }
+
+    .app-modal-window {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      max-width: 680px;
+      width: 100%;
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.35);
+      animation: modalScale 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalScale {
+      from { opacity: 0; transform: scale(0.95) translateY(12px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-exit-btn {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background: #f0f7f3;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 19px;
+      color: var(--text-muted);
+    }
+
+    /* Auth Modal Specific Layout */
+    .auth-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+
+    .auth-header-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .auth-header-sub {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .auth-text-field {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #d2e8dd;
+      border-radius: var(--radius-sm);
+      margin-bottom: 14px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .auth-text-field:focus {
+      outline: none;
+      border-color: var(--accent-mint);
+      box-shadow: 0 0 0 3px rgba(34, 197, 155, 0.25);
+    }
+
+    .btn-auth-action {
+      width: 100%;
+      padding: 13px;
+      border-radius: var(--radius-full);
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 6px;
+    }
+
+    .btn-auth-action:hover {
+      background: var(--primary-light);
+    }
+
+    .role-select-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .role-card-opt {
+      padding: 12px 18px;
+      border: 1.5px solid #d8ede3;
+      border-radius: var(--radius-sm);
+      background: #fbfdfc;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .role-card-opt:hover {
+      background: #eef8f4;
+      border-color: var(--accent-mint);
+      transform: translateX(4px);
+    }
+
+    /* =============== DARK MODE (MODE MALAM) =============== */
+    html.dark {
+      --primary: #22c59b;
+      --primary-dark: #0d8c6e;
+      --primary-light: #34d9ad;
+      --accent-mint: #22c59b;
+      --accent-lime: #c5f135;
+      --accent-teal: #2ae8c0;
+      --bg-cream: #06120e;
+      --bg-glass: rgba(10, 24, 18, 0.94);
+      --card-border: rgba(34, 197, 155, 0.2);
+      --text-main: #f0fdf4;
+      --text-muted: #9fe2cb;
+      --text-sub: #7da598;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.5);
+      --shadow-hover: 0 20px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    html.dark body {
+      background-color: #06120e;
+      color: #f0fdf4;
+      background-image:
+        radial-gradient(circle at 10% 15%, rgba(34, 197, 155, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(197, 241, 53, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(13, 140, 110, 0.06) 0%, transparent 60%);
+    }
+
+    html.dark header {
+      background: rgba(7, 18, 14, 0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(34, 197, 155, 0.2);
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    html.dark .brand-title {
+      color: #34d9ad;
+      text-shadow: 0 0 20px rgba(34, 197, 155, 0.35);
+    }
+
+    html.dark .brand-subtitle {
+      color: #7da598;
+    }
+
+    html.dark .nav-pills {
+      background: rgba(14, 30, 24, 0.9);
+      border: 1px solid rgba(34, 197, 155, 0.25);
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    html.dark .nav-btn {
+      color: #9fe2cb;
+    }
+
+    html.dark .nav-btn:hover {
+      color: #ffffff;
+      background: rgba(34, 197, 155, 0.15);
+    }
+
+    html.dark .nav-btn.active {
+      background: linear-gradient(135deg, #0d8c6e, #22c59b);
+      color: #022017;
+      font-weight: 800;
+      box-shadow: 0 4px 16px rgba(34, 197, 155, 0.4);
+    }
+
+    html.dark .btn-search {
+      background: #0f231b;
+      border: 1px solid rgba(34, 197, 155, 0.25);
+      color: #9fe2cb;
+    }
+
+    html.dark .btn-search:hover {
+      color: #22c59b;
+      border-color: #22c59b;
+      box-shadow: 0 0 12px rgba(34, 197, 155, 0.3);
+    }
+
+    html.dark .btn-login {
+      border: 1.5px solid #22c59b;
+      color: #22c59b;
+      background: rgba(34, 197, 155, 0.08);
+    }
+
+    html.dark .btn-login:hover {
+      background: rgba(34, 197, 155, 0.2);
+      box-shadow: 0 0 15px rgba(34, 197, 155, 0.3);
+    }
+
+    html.dark .btn-register {
+      background: linear-gradient(135deg, #0d8c6e, #22c59b);
+      color: #022017;
+      box-shadow: 0 4px 18px rgba(34, 197, 155, 0.45);
+    }
+
+    html.dark .hero-wrapper {
+      background: linear-gradient(140deg, #02140e 0%, #062b20 45%, #094030 85%, #0d5943 100%);
+      border-bottom: 4px solid #22c59b;
+    }
+
+    html.dark .hero-scene-card {
+      border-color: rgba(34, 197, 155, 0.4);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(34, 197, 155, 0.2);
+    }
+
+    html.dark .pillar-card,
+    html.dark .dash-card,
+    html.dark .pro-job-card,
+    html.dark .pro-project-card,
+    html.dark .pro-partner-card,
+    html.dark .exec-card,
+    html.dark .staff-member-card {
+      background: linear-gradient(180deg, #0f221a 0%, #091712 100%);
+      border: 1px solid rgba(34, 197, 155, 0.22);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    html.dark .pillar-card:hover,
+    html.dark .dash-card:hover,
+    html.dark .pro-job-card:hover,
+    html.dark .pro-project-card:hover,
+    html.dark .pro-partner-card:hover,
+    html.dark .exec-card:hover,
+    html.dark .staff-member-card:hover {
+      border-color: #22c59b;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), 0 0 30px rgba(34, 197, 155, 0.25);
+    }
+
+    html.dark .pillar-icon-box {
+      background: #142e23;
+      border: 1px solid rgba(34, 197, 155, 0.3);
+      color: #34d9ad;
+    }
+
+    html.dark .pillar-card:hover .pillar-icon-box {
+      background: linear-gradient(135deg, #0d8c6e, #22c59b);
+      color: #022017;
+      box-shadow: 0 0 20px rgba(34, 197, 155, 0.5);
+    }
+
+    html.dark .pillar-title,
+    html.dark .dash-title,
+    html.dark .job-role-name,
+    html.dark .project-heading,
+    html.dark .partner-title-txt,
+    html.dark .exec-name,
+    html.dark .staff-name,
+    html.dark .sec-headline-big {
+      color: #ffffff;
+    }
+
+    html.dark .pillar-desc,
+    html.dark .dash-desc,
+    html.dark .job-corp-name,
+    html.dark .project-loc-tag,
+    html.dark .partner-country-txt,
+    html.dark .exec-desc,
+    html.dark .sec-subtitle-text {
+      color: #9fe2cb;
+    }
+
+    html.dark .badge-tag-leaf,
+    html.dark .dash-pill-cat,
+    html.dark .job-chip,
+    html.dark .tag-bubble,
+    html.dark .partner-tag-pill,
+    html.dark .staff-badge {
+      background: rgba(34, 197, 155, 0.14) !important;
+      color: #34d9ad !important;
+      border: 1px solid rgba(34, 197, 155, 0.28);
+    }
+
+    html.dark .calc-screen {
+      background: linear-gradient(135deg, #031c14, #08382b);
+      border: 1px solid rgba(34, 197, 155, 0.35);
+      box-shadow: inset 0 2px 15px rgba(0,0,0,0.5), 0 0 25px rgba(34, 197, 155, 0.15);
+    }
+
+    html.dark .calc-big-stat {
+      color: #c5f135;
+      text-shadow: 0 0 20px rgba(197, 241, 53, 0.4);
+    }
+
+    html.dark .filter-pill {
+      background: transparent;
+      border: 1px solid rgba(34, 197, 155, 0.22);
+      color: #9fe2cb;
+      box-shadow: none;
+    }
+
+    html.dark .filter-pill.active,
+    html.dark .filter-pill.pill-hovered {
+      background: transparent;
+      color: #042b1f;
+      border-color: transparent;
+    }
+
+    html.dark .company-logo-circle {
+      background: #142e23 !important;
+      color: #34d9ad !important;
+      border: 1px solid rgba(34, 197, 155, 0.3);
+    }
+
+    html.dark .btn-job-apply {
+      background: linear-gradient(135deg, #0d8c6e, #22c59b);
+      color: #022017;
+      font-weight: 800;
+      box-shadow: 0 4px 16px rgba(34, 197, 155, 0.35);
+    }
+
+    html.dark .btn-job-apply:hover {
+      background: #22c59b;
+      box-shadow: 0 6px 22px rgba(34, 197, 155, 0.55);
+    }
+
+    html.dark .btn-project-action {
+      border: 1.5px solid #22c59b;
+      color: #22c59b;
+      background: rgba(34, 197, 155, 0.08);
+    }
+
+    html.dark .btn-project-action:hover {
+      background: #22c59b;
+      color: #022017;
+      box-shadow: 0 0 15px rgba(34, 197, 155, 0.4);
+    }
+
+    html.dark .project-card-details {
+      background: transparent;
+    }
+
+    html.dark .partner-crest {
+      background: #142e23 !important;
+      color: #34d9ad !important;
+      border: 3px solid rgba(34, 197, 155, 0.35) !important;
+      box-shadow: 0 0 20px rgba(34, 197, 155, 0.2);
+    }
+
+    html.dark .exec-avatar-ring {
+      border: 4px solid #22c59b;
+      box-shadow: 0 0 25px rgba(34, 197, 155, 0.4);
+    }
+
+    html.dark .staff-avatar {
+      border: 3px solid #22c59b;
+      box-shadow: 0 0 18px rgba(34, 197, 155, 0.35);
+    }
+
+    html.dark .org-level-title {
+      color: #34d9ad;
+      text-shadow: 0 0 12px rgba(34, 197, 155, 0.3);
+    }
+
+    html.dark .view-banner-box {
+      background: linear-gradient(135deg, #02140e 0%, #062b20 60%, #0a4030 100%);
+      border-bottom: 3px solid #22c59b;
+    }
+
+    html.dark .together-card-banner {
+      background: linear-gradient(135deg, #02160f 0%, #063426 60%, #0c4d39 100%);
+      border: 1px solid rgba(34, 197, 155, 0.3);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(34, 197, 155, 0.18);
+    }
+
+    html.dark footer {
+      background: #01140e;
+      border-top: 3px solid #22c59b;
+    }
+
+    html.dark .app-modal-window {
+      background: #0c1c16;
+      border: 1px solid rgba(34, 197, 155, 0.25);
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), 0 0 30px rgba(34, 197, 155, 0.15);
+    }
+
+    html.dark .modal-exit-btn {
+      background: #142e23;
+      color: #9fe2cb;
+    }
+
+    html.dark .auth-header-title {
+      color: #ffffff;
+    }
+
+    html.dark .auth-header-sub {
+      color: #9fe2cb;
+    }
+
+    html.dark .auth-text-field {
+      background: #081611;
+      border: 1px solid rgba(34, 197, 155, 0.25);
+      color: #ffffff;
+    }
+
+    html.dark .auth-text-field:focus {
+      border-color: #22c59b;
+      box-shadow: 0 0 0 3px rgba(34, 197, 155, 0.35);
+    }
+
+    html.dark .auth-text-field::placeholder {
+      color: #558574;
+    }
+
+    html.dark .role-card-opt {
+      background: #081611;
+      border: 1.5px solid rgba(34, 197, 155, 0.2);
+      color: #ffffff;
+    }
+
+    html.dark .role-card-opt:hover {
+      background: #142e23;
+      border-color: #22c59b;
+      transform: translateX(4px);
+    }
+
+    /* Dark mode toggle button */
+    .btn-darkmode {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--card-border);
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    html.dark .btn-darkmode {
+      background: #0f231b;
+      border: 1px solid rgba(34, 197, 155, 0.3);
+      color: #c5f135;
+      box-shadow: 0 0 12px rgba(197, 241, 53, 0.25);
+    }
+
+    .btn-darkmode:hover {
+      border-color: var(--accent-mint);
+      transform: scale(1.08);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-grid, .dashboard-duo-grid, .auth-two-col {
+        grid-template-columns: 1fr;
+      }
+      .pillars-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .cards-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .staff-row-5 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-pills {
+        display: none;
+      }
+      .hero-headline {
+        font-size: 40px;
+      }
+      .hero-headline-sub {
+        font-size: 24px;
+      }
+      .pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cards-grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .staff-row-5 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .together-card-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 36px 24px;
+      }
+    }
+    /* Responsive refinements across every in-page view. */
+    .nav-toggle { display: none; }
+    img, svg, video, iframe { max-width: 100%; }
+    .container { width: 100%; }
+    .hero-grid > *, .dashboard-duo-grid > *, .auth-two-col > *, .cards-grid-3 > *, .pillars-grid > *, .staff-row-5 > * { min-width: 0; }
+
+    @media (max-width: 992px) {
+      header { height: auto; min-height: 72px; }
+      header .nav-inner { position: relative; min-height: 72px; flex-wrap: wrap; gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+      .brand-wrap { min-width: 0; flex: 1 1 auto; gap: 10px; }
+      .brand-title { font-size: 20px; }
+      .brand-subtitle { font-size: 10px; }
+      .brand-logo-img { width: 42px; height: 42px; }
+      .nav-toggle { width: 42px; height: 42px; flex: 0 0 42px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border: 1px solid var(--card-border); border-radius: 12px; background: #fff; color: var(--primary); cursor: pointer; }
+      .nav-toggle span { width: 18px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .2s ease, opacity .2s ease; }
+      .nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .nav-toggle[aria-expanded="true"] span:last-child { transform: translateY(-7px) rotate(-45deg); }
+      .nav-pills { display: none; order: 3; flex: 1 0 100%; width: 100%; flex-direction: column; align-items: stretch; gap: 4px; padding: 8px; border-radius: 16px; background: var(--bg-glass); box-shadow: var(--shadow-soft); }
+      .nav-pills.is-open { display: flex; }
+      .nav-pills li { width: 100%; }
+      .nav-btn { width: 100%; min-height: 44px; padding: 10px 14px; text-align: left; }
+      .nav-actions { flex: 0 1 auto; gap: 8px; }
+      .btn-login, .btn-register { padding: 9px 14px; font-size: 13px; }
+      .hero-grid { gap: 30px; }
+      .hero-photo-main { height: clamp(250px, 48vw, 360px); }
+      .pillars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cards-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+      .staff-row-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .together-card-banner { gap: 26px; }
+      .together-tags-line { flex-wrap: wrap; gap: 12px 20px; }
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+      .container { padding-left: 18px; padding-right: 18px; }
+      header .nav-inner { column-gap: 8px; }
+      .brand-title { font-size: 18px; }
+      .brand-subtitle { max-width: 190px; font-size: 9px; letter-spacing: 0; }
+      .brand-logo-img { width: 38px; height: 38px; }
+      .nav-actions { flex: 1 0 100%; justify-content: flex-end; gap: 6px; }
+      .btn-search, .btn-darkmode { width: 38px; height: 38px; flex: 0 0 38px; }
+      .btn-login, .btn-register { min-height: 38px; padding: 8px 11px; font-size: 12px; }
+      .hero-wrapper { padding: 44px 0 68px; }
+      .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+      .hero-badge-pill { max-width: 100%; padding: 7px 12px; font-size: 10px; letter-spacing: .65px; }
+      .hero-headline { font-size: clamp(36px, 11vw, 48px); line-height: 1.04; letter-spacing: -1px; }
+      .hero-headline-sub { margin-top: 5px; font-size: clamp(20px, 6vw, 26px); line-height: 1.2; }
+      .hero-tagline-bar { font-size: 17px; line-height: 1.35; }
+      .hero-body-text { margin-bottom: 24px; font-size: 15px; }
+      .hero-btn-group { align-items: stretch; flex-direction: column; gap: 10px; }
+      .hero-btn-group button { width: 100%; justify-content: center; min-height: 48px; }
+      .hero-scene-card { padding: 8px; border-radius: 22px; }
+      .hero-photo-main { height: auto; aspect-ratio: 4 / 3; border-radius: 16px; }
+      .hero-hud-float { left: 14px; right: 14px; bottom: 14px; gap: 10px; padding: 11px 12px; }
+      .hud-icon { width: 38px; height: 38px; font-size: 19px; }
+      .pillars-dock { margin-top: -28px; margin-bottom: 42px; }
+      .pillars-grid { gap: 12px; }
+      .pillar-card { padding: 18px 12px; font-size: 15px; }
+      .dashboard-showcase { padding: 12px 0 54px; }
+      .dashboard-duo-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+      .dash-card, .pro-job-card, .pro-project-card, .pro-partner-card, .staff-member-card { padding: 20px; }
+      .calc-screen { padding: 18px; }
+      .calc-big-stat { font-size: clamp(27px, 8vw, 34px); }
+      .gis-map-canvas { min-height: 250px; height: 260px; }
+      .sec-badge-center { margin-bottom: 32px; }
+      .sec-headline-big { font-size: clamp(27px, 7.5vw, 34px); line-height: 1.2; }
+      .sec-subtitle-text { font-size: 14px; }
+      .org-showcase-wrap { padding-bottom: 52px; }
+      .org-row-center { margin-bottom: 28px; }
+      .exec-card { width: min(340px, 100%); padding: 26px 20px; }
+      .view-banner-box { padding: 38px 0 42px; }
+      .view-banner-title { font-size: clamp(32px, 9vw, 42px); line-height: 1.1; }
+      .view-banner-sub { font-size: 14px; }
+      .pills-scroll-bar { flex-wrap: wrap; overflow: visible; gap: 8px; padding: 0 0 10px; margin-bottom: 24px; }
+      .filter-pill { max-width: 100%; white-space: normal; text-align: center; padding: 9px 13px; font-size: 12px; line-height: 1.25; }
+      .cards-grid-3 { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-bottom: 44px; }
+      .job-role-name, .project-heading, .member-name { overflow-wrap: anywhere; }
+      .staff-row-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .staff-member-card { padding: 18px 12px; }
+      .together-card-banner { align-items: stretch; margin: 46px 0 56px; padding: 30px 22px; gap: 22px; }
+      .together-headline { font-size: 27px; line-height: 1.18; }
+      .together-subtext { font-size: 14px; }
+      .together-tags-line { gap: 10px 14px; }
+      .tog-tag { font-size: 12px; }
+      .together-card-banner > button { width: 100%; justify-content: center; min-height: 48px; }
+      .sec-badge-center .badge-tag-leaf { max-width: 100%; white-space: normal; justify-content: center; text-align: center; font-size: 10px; letter-spacing: .7px; }
+      footer { padding: 44px 0 28px; }
+      .footer-top-row, .footer-bot-row { align-items: flex-start; flex-direction: column; gap: 22px; }
+      .footer-nav-list { flex-wrap: wrap; gap: 12px 18px; }
+      .footer-nav-list a { font-size: 13px; }
+      .app-modal-backdrop { padding: 12px; }
+      .app-modal-window { max-height: calc(100dvh - 24px); overflow-y: auto; padding: 28px 20px; }
+    }
+
+    @media (max-width: 380px) {
+      .container { padding-left: 14px; padding-right: 14px; }
+      .brand-subtitle { max-width: 150px; }
+      .nav-actions { gap: 5px; }
+      .btn-login, .btn-register { padding: 7px 8px; font-size: 11px; }
+      .staff-row-5 { grid-template-columns: minmax(0, 1fr); }
+    }
+    /* Activity archive home */
+    .events-hero { position: relative; overflow: hidden; padding: 72px 0 78px; color: #fff; background: radial-gradient(circle at 88% 18%, rgba(34,197,155,.26), transparent 34%), linear-gradient(135deg, #04382b 0%, #085642 58%, #0f755a 100%); border-bottom: 4px solid var(--accent-mint); }
+    .events-kicker, .events-section-kicker { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.3px; }
+    .events-kicker { color: #a7f3d0; margin-bottom: 14px; }
+    .events-title { max-width: 820px; font-size: clamp(38px, 6vw, 60px); line-height: 1.05; letter-spacing: -1.3px; font-weight: 800; }
+    .events-intro { max-width: 670px; margin-top: 18px; color: #e2f7ed; font-size: 17px; line-height: 1.65; }
+    .events-section { padding: 58px 0 90px; }
+    .events-section-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 28px; }
+    .events-section-kicker { color: var(--accent-teal); margin-bottom: 8px; }
+    .events-section-heading h2 { color: var(--primary); font-size: 32px; font-weight: 800; letter-spacing: -.6px; }
+    .events-section-heading p { margin-top: 7px; color: var(--text-muted); font-size: 15px; }
+    .event-post-preview { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); overflow: hidden; border: 1px solid var(--card-border); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-soft); }
+    .event-post-image { min-height: 330px; position: relative; background: #dcebe4; }
+    .event-post-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .event-post-sample-label { position: absolute; top: 18px; left: 18px; padding: 7px 11px; border-radius: var(--radius-full); background: rgba(3,46,35,.88); color: #c7f9e7; font-size: 10px; font-weight: 800; letter-spacing: .8px; }
+    .event-post-content { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 34px; }
+    .event-post-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 16px; color: var(--text-muted); font-size: 12px; font-weight: 700; }
+    .event-post-content h3 { color: var(--primary); font-size: clamp(24px, 3vw, 34px); line-height: 1.18; font-weight: 800; letter-spacing: -.6px; }
+    .event-post-content > p { margin-top: 12px; color: var(--text-muted); font-size: 14px; line-height: 1.65; }
+    .event-post-byline { margin-top: 24px; padding-top: 16px; width: 100%; border-top: 1px solid var(--card-border); color: var(--text-sub); font-size: 12px; }
+    .event-post-byline strong { color: var(--primary); }
+    .events-empty-state { display: flex; align-items: center; gap: 20px; padding: 28px; border: 1px solid var(--card-border); border-radius: var(--radius-lg); background: rgba(255,255,255,.88); box-shadow: var(--shadow-soft); }
+    .events-empty-icon { width: 58px; height: 58px; flex: 0 0 58px; display: grid; place-items: center; border-radius: 18px; background: #e1f5eb; font-size: 26px; }
+    .events-empty-state h3 { color: var(--primary); font-size: 18px; font-weight: 800; }
+    .events-empty-state p { margin-top: 5px; color: var(--text-muted); font-size: 14px; line-height: 1.55; }
+    /* Project topics are informative labels, not filters. */
+    .project-topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+    .project-topic { display: inline-flex; align-items: center; min-height: 36px; padding: 8px 14px; border: 1px solid var(--card-border); border-radius: var(--radius-full); background: #e9f5ef; color: var(--text-muted); font-size: 12.5px; font-weight: 700; line-height: 1.25; }
+    html.dark .events-section-heading h2, html.dark .event-post-content h3 { color: #d1fae5; }
+    html.dark .events-section-heading p, html.dark .event-post-content > p, html.dark .event-post-meta { color: #91b9aa; }
+    html.dark .event-post-preview { background: rgba(8,31,23,.9); border-color: rgba(34,197,155,.18); }
+    html.dark .event-post-byline { border-color: rgba(34,197,155,.18); color: #91b9aa; }
+    html.dark .event-post-byline strong { color: #d1fae5; }
+    html.dark .project-topic { background: rgba(34,197,155,.08); border-color: rgba(34,197,155,.2); color: #9fe2cb; }
+    @media (max-width: 600px) {
+      .events-hero { padding: 48px 0 54px; }
+      .events-title { font-size: clamp(34px, 10vw, 46px); }
+      .events-intro { margin-top: 14px; font-size: 15px; }
+      .events-section { padding: 38px 0 58px; }
+      .events-section-heading h2 { font-size: 27px; }
+      .event-post-preview { grid-template-columns: minmax(0, 1fr); }
+      .event-post-image { min-height: 220px; aspect-ratio: 16 / 10; }
+      .event-post-content { padding: 22px 20px; }
+      .event-post-content h3 { font-size: 25px; }
+      .event-post-byline { margin-top: 18px; padding-top: 13px; }
+      .project-topics { gap: 7px; margin-bottom: 22px; }
+      .project-topic { min-height: 32px; padding: 7px 10px; font-size: 11.5px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Leaf Overlay (Corner Decoration) -->
+  <svg class="leaf-deco leaf-top-right" viewBox="0 0 100 100" fill="none">
+    <path d="M20,90 Q60,10 90,20 Q80,70 20,90 Z" fill="#22c59b" opacity="0.3"/>
+    <path d="M10,80 Q50,0 80,10 Q70,60 10,80 Z" fill="#b8f03b" opacity="0.25"/>
+  </svg>
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="container nav-inner">
+      <div class="brand-wrap" onclick="navTo('home')">
+        <img src="images/logo.png" alt="IGJVLab logo" class="brand-logo-img">
+        <div>
+          <div class="brand-title">IGJVLab <span>•</span></div>
+          <div class="brand-subtitle">International Green Job Virtual Lab</div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="primaryNavigation" onclick="toggleNavigation()">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-pills" id="primaryNavigation">
+        <li><button class="nav-btn active" id="btn-home" onclick="navTo('home')">Home</button></li>
+        <li><button class="nav-btn" id="btn-jobs" onclick="navTo('jobs')">Green Jobs</button></li>
+        <li><button class="nav-btn" id="btn-project" onclick="navTo('project')">Project</button></li>
+        <li><button class="nav-btn" id="btn-network" onclick="navTo('network')">Network</button></li>
+        <li><button class="nav-btn" id="btn-about" onclick="navTo('about')">About</button></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn-search" title="Cari di IGJVLab" onclick="alert('Pencarian cepat aktif: ketik proyek, pekerjaan, atau modul...')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="btn-darkmode" id="darkModeToggle" title="Ganti Mode Gelap / Terang" onclick="toggleDarkMode()">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================== VIEW 1: HOME ======================== -->
+  <div id="view-home" class="view-content active-view">
+    <section class="events-hero">
+      <div class="container">
+        <div class="events-kicker">KABAR & DOKUMENTASI IGJVLAB</div>
+        <h1 class="events-title">Cerita dari kegiatan kami</h1>
+        <p class="events-intro">Dokumentasi acara, kolaborasi, dan aktivitas komunitas International Green Job Virtual Lab.</p>
+      </div>
+    </section>
+
+    <section class="events-section">
+      <div class="container">
+        <div class="events-section-heading">
+          <div>
+            <div class="events-section-kicker">CATATAN KOMUNITAS</div>
+            <h2>Dokumentasi kegiatan</h2>
+            <p>Ikuti kabar dan lihat kembali momen dari kegiatan IGJVLab.</p>
+          </div>
+        </div>
+        <article class="event-post-preview">
+          <div class="event-post-image">
+            <img src="images/hero.jpg" alt="Contoh foto dokumentasi kegiatan">
+            <span class="event-post-sample-label">CONTOH TAMPILAN POSTINGAN</span>
+          </div>
+          <div class="event-post-content">
+            <div class="event-post-meta"><span>📅 Tanggal acara</span><span>📍 Lokasi acara</span></div>
+            <h3>Judul kegiatan akan tampil di sini</h3>
+            <p>Ringkasan cerita kegiatan dan dokumentasi foto akan ditampilkan di sini setelah postingan dibuat.</p>
+            <div class="event-post-byline">Ditulis oleh <strong>nama anggota</strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <!-- ======================== VIEW 2: GREEN JOBS ======================== -->
+  <div id="view-jobs" class="view-content">
+    <div class="view-banner-box">
+      <div class="container">
+        <div class="view-banner-tag">Career & Opportunities Portal</div>
+        <h1 class="view-banner-title">Green Jobs</h1>
+        <p class="view-banner-sub">Find your opportunity in the green economy and build certified capabilities.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Informational categories, not filters -->
+      <div class="project-topics" aria-label="Kategori green jobs">
+        <span class="project-topic">All Jobs</span>
+        <span class="project-topic">Find Jobs</span>
+        <span class="project-topic">Internship</span>
+        <span class="project-topic">Green Services (Freelance)</span>
+        <span class="project-topic">Virtual Lab</span>
+        <span class="project-topic">Courses</span>
+        <span class="project-topic">Partner Courses</span>
+        <span class="project-topic">Certification</span>
+        <span class="project-topic">Career Pathway</span>
+      </div>
+
+      <h3 style="font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 24px;">
+        Featured Job Opportunities
+      </h3>
+
+      <div class="cards-grid-3">
+        <!-- Job 1 -->
+        <div class="pro-job-card">
+          <div>
+            <div class="job-company-badge">
+              <div class="company-logo-circle" style="background: #e0f2fe; color: #0369a1;">📊</div>
+              <div>
+                <h4 class="job-role-name">Environmental Data Analyst</h4>
+                <div class="job-corp-name">GreenTech Solutions</div>
+              </div>
+            </div>
+            <div class="job-tags-wrap">
+              <span class="job-chip">Full Time</span>
+              <span class="job-chip">Jakarta, Indonesia</span>
+              <span class="job-chip">Data & Sensors</span>
+            </div>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 22px;">
+              Menganalisis emisi dan sensor lingkungan menggunakan platform analisis spasial terintegrasi untuk perusahaan multinasional.
+            </p>
+          </div>
+          <button class="btn-job-apply" onclick="openApplyPrompt('Environmental Data Analyst', 'GreenTech Solutions')">Apply Now</button>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="pro-job-card">
+          <div>
+            <div class="job-company-badge">
+              <div class="company-logo-circle" style="background: #fef3c7; color: #b45309;">☀️</div>
+              <div>
+                <h4 class="job-role-name">Renewable Energy Intern</h4>
+                <div class="job-corp-name">SolarFuture Energy</div>
+              </div>
+            </div>
+            <div class="job-tags-wrap">
+              <span class="job-chip">Internship</span>
+              <span class="job-chip">Remote / Hybrid</span>
+              <span class="job-chip">Solar & Wind</span>
+            </div>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 22px;">
+              Membantu perancangan sistem mikrogrid surya dan simulasi efisiensi energi terbarukan komunitas binaan.
+            </p>
+          </div>
+          <button class="btn-job-apply" onclick="openApplyPrompt('Renewable Energy Intern', 'SolarFuture Energy')">Apply Now</button>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="pro-job-card">
+          <div>
+            <div class="job-company-badge">
+              <div class="company-logo-circle" style="background: #dcfce7; color: #15803d;">🌿</div>
+              <div>
+                <h4 class="job-role-name">Sustainability Specialist</h4>
+                <div class="job-corp-name">EcoLife Solutions</div>
+              </div>
+            </div>
+            <div class="job-tags-wrap">
+              <span class="job-chip">Full Time</span>
+              <span class="job-chip">Bali, Indonesia</span>
+              <span class="job-chip">Circular Economy</span>
+            </div>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 22px;">
+              Memimpin audit keberlanjutan rantai pasok dan implementasi daur ulang sampah sirkular sektor pariwisata.
+            </p>
+          </div>
+          <button class="btn-job-apply" onclick="openApplyPrompt('Sustainability Specialist', 'EcoLife Solutions')">Apply Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== VIEW 3: PROJECT ======================== -->
+  <div id="view-project" class="view-content">
+    <div class="view-banner-box">
+      <div class="container">
+        <div class="view-banner-tag">Real Impact & Innovations</div>
+        <h1 class="view-banner-title">Projects</h1>
+        <p class="view-banner-sub">Turn ideas into real impact through interdisciplinary green initiatives.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="project-topics" aria-label="Topik proyek">
+        <span class="project-topic">All Projects</span>
+        <span class="project-topic">Green Projects</span>
+        <span class="project-topic">Find Project</span>
+        <span class="project-topic">Promote Project</span>
+        <span class="project-topic">Find Team</span>
+        <span class="project-topic">Research Projects</span>
+        <span class="project-topic">Publications</span>
+        <span class="project-topic">Patents & Innovation</span>
+      </div>
+
+    <!-- Carbon Calculator + PIO Geospasial Dashboard Showcase -->
+    <section class="dashboard-showcase">
+      <div class="container">
+        <div class="sec-badge-center">
+          <div class="badge-tag-leaf">Featured Interactive Tools</div>
+          <h2 class="sec-headline-big">Carbon Calculator & PIO Geospasial</h2>
+          <p class="sec-subtitle-text">Simulasi interaktif langsung untuk mengukur jejak karbon dan memetakan sebaran proyek hijau secara spasial.</p>
+        </div>
+
+        <div class="dashboard-duo-grid">
+          <!-- Widget 1: Carbon Calculator -->
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <span class="dash-pill-cat">Simulasi Emisi</span>
+              <span style="font-size: 22px;">🍃</span>
+            </div>
+            <h3 class="dash-title">Carbon Calculator</h3>
+            <p class="dash-desc">Hitung estimasi emisi karbon pribadi atau proyek Anda dan dapatkan rekomendasi efisiensi energi hijau.</p>
+
+            <div class="calc-screen">
+              <div class="calc-gauge-box">
+                <div>
+                  <div style="font-size: 12px; color: #a7f3d0; text-transform: uppercase;">Estimasi Emisi Tahunan:</div>
+                  <div class="calc-big-stat" id="calcNumber">1.84 Ton CO₂e</div>
+                </div>
+                <div style="text-align: right;">
+                  <span style="font-size: 11px; background: rgba(34, 197, 155, 0.25); color: #86efac; padding: 4px 10px; border-radius: 20px;">Moderate Footprint</span>
+                </div>
+              </div>
+
+              <div class="calc-slider-block">
+                <div class="calc-slider-head">
+                  <span>Komuter Harian (Kendaraan/BBM)</span>
+                  <span id="txtKm" style="color: var(--accent-lime);">20 km/hari</span>
+                </div>
+                <input type="range" min="0" max="100" value="20" class="calc-slider-input" id="rangeKm" oninput="runCalculator()">
+              </div>
+
+              <div class="calc-slider-block">
+                <div class="calc-slider-head">
+                  <span>Konsumsi Listrik Bulanan</span>
+                  <span id="txtKwh" style="color: var(--accent-lime);">150 kWh/bulan</span>
+                </div>
+                <input type="range" min="50" max="600" value="150" class="calc-slider-input" id="rangeKwh" oninput="runCalculator()">
+              </div>
+
+              <div class="calc-equivalent-badge">
+                <span>🌲</span>
+                <span id="treeEquivalent">Setara dengan menyerap emisi 83 pohon dewasa per tahun.</span>
+              </div>
+            </div>
+
+            <button class="btn-cta-emerald" style="width: 100%; justify-content: center;" onclick="alert('Hasil audit jejak karbon berhasil disimpan ke portofolio Anda!')">
+              Simpan Hasil Audit Karbon
+            </button>
+          </div>
+
+          <!-- Widget 2: PIO Geospasial -->
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <span class="dash-pill-cat" style="background: #e0f2fe; color: #0284c7;">GIS Spatial Mapping</span>
+              <span style="font-size: 22px;">🛰️</span>
+            </div>
+            <h3 class="dash-title">PIO Geospasial</h3>
+            <p class="dash-desc">Pemetaan interaktif persebaran proyek restorasi, potensi energi surya, dan riset lapangan berbasis spasial.</p>
+
+            <div class="gis-map-canvas">
+              <div class="gis-radar-sweep"></div>
+
+              <!-- Interactive Pins -->
+              <div class="gis-marker marker-sumbar" onclick="showGisPopup('Sumatera Barat', 'Restorasi 500 Ha Hutan Mangrove Pesisir', 'Blue Carbon Absorption')">
+                <span>📍</span> Sumbar: Mangrove
+              </div>
+
+              <div class="gis-marker marker-jogja" onclick="showGisPopup('Yogyakarta', 'Smart Sustainable Agriculture & Bio-energy', 'Soil Regeneration & IoT')">
+                <span>📍</span> DIY: Pertanian
+              </div>
+
+              <div class="gis-marker marker-lombok" onclick="showGisPopup('Lombok', 'Solar Microgrid 2.4 MW Komunitas', 'Clean Energy Transition')">
+                <span>📍</span> Lombok: PLTS
+              </div>
+
+              <div class="gis-hud-panel">
+                <span>🟢 Radar Spasial Aktif</span>
+                <span>3 Proyek Prioritas Terpetakan</span>
+              </div>
+            </div>
+
+            <button class="btn-project-action" style="width: 100%; margin-top: 22px;" onclick="document.getElementById('featuredProjects').scrollIntoView({behavior: 'smooth'})">
+              Jelajahi proyek terpetakan ↓
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+      <h3 id="featuredProjects" style="font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 24px;">
+        Featured Impact Projects
+      </h3>
+
+      <div class="cards-grid-3">
+        <!-- Project 1 -->
+        <div class="pro-project-card">
+          <img src="images/journey.jpg" alt="Mangrove Restoration" class="project-thumb">
+          <div class="project-card-details">
+            <div class="project-tag-strip">
+              <span class="tag-bubble">Environment</span>
+              <span class="tag-bubble">Conservation</span>
+            </div>
+            <h4 class="project-heading">Mangrove Restoration Program</h4>
+            <div class="project-loc-tag">📍 West Sumatra, Indonesia</div>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">
+              Restorasi ekosistem pesisir untuk penyerapan karbon biru dan perlindungan abrasi pantai melibatkan nelayan lokal.
+            </p>
+            <button class="btn-project-action" onclick="openProjectDetailsModal('Mangrove Restoration Program', 'West Sumatra, Indonesia', 'Target penyerapan 1,200 Ton CO2e/tahun dan pelibatan 35 pemuda pesisir.')">View Detail</button>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="pro-project-card">
+          <img src="images/module1.jpg" alt="Solar Panel Installation" class="project-thumb">
+          <div class="project-card-details">
+            <div class="project-tag-strip">
+              <span class="tag-bubble">Renewable Energy</span>
+              <span class="tag-bubble">Community</span>
+            </div>
+            <h4 class="project-heading">Solar Panel Installation</h4>
+            <div class="project-loc-tag">📍 Lombok, Indonesia</div>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">
+              Penyediaan listrik mikrogrid surya mandiri untuk fasilitas sekolah dan sentra pengeringan hasil tani desa.
+            </p>
+            <button class="btn-project-action" onclick="openProjectDetailsModal('Solar Panel Installation', 'Lombok, Indonesia', 'Kapasitas 150 kWp, memangkas biaya energi desa hingga 45%.')">View Detail</button>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="pro-project-card">
+          <img src="images/module2.jpg" alt="Sustainable Agriculture" class="project-thumb">
+          <div class="project-card-details">
+            <div class="project-tag-strip">
+              <span class="tag-bubble">Agriculture</span>
+              <span class="tag-bubble">Research</span>
+            </div>
+            <h4 class="project-heading">Sustainable Agriculture Research</h4>
+            <div class="project-loc-tag">📍 Yogyakarta, Indonesia</div>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">
+              Pengembangan pupuk organik berbasis limbah biomassa dan pemantauan IoT kelembaban tanah bersama peneliti kampus.
+            </p>
+            <button class="btn-project-action" onclick="openProjectDetailsModal('Sustainable Agriculture Research', 'Yogyakarta, Indonesia', 'Riset gabungan bersama kampus mitra untuk pemulihan tanah kritis.')">View Detail</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== VIEW 4: NETWORK ======================== -->
+  <div id="view-network" class="view-content">
+    <div class="view-banner-box">
+      <div class="container">
+        <div class="view-banner-tag">Global Alliance & Network</div>
+        <h1 class="view-banner-title">Network</h1>
+        <p class="view-banner-sub">Connect. Collaborate. Grow with international universities and sustainable institutions.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="project-topics" aria-label="Kategori anggota network">
+        <span class="project-topic">All Members</span>
+        <span class="project-topic">Universities</span>
+        <span class="project-topic">Companies</span>
+        <span class="project-topic">Researchers</span>
+        <span class="project-topic">NGOs</span>
+        <span class="project-topic">Communities</span>
+        <span class="project-topic">International Organizations</span>
+      </div>
+
+      <h3 style="font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 24px;">
+        Featured International & National Partners
+      </h3>
+
+      <div class="cards-grid-3">
+        <!-- Partner 1: UiTM -->
+        <div class="pro-partner-card">
+          <div class="partner-crest" style="background: #f5f3ff; color: #7c3aed; border-color: #ddd6fe;">UiTM</div>
+          <h4 class="partner-title-txt">Universiti Teknologi MARA</h4>
+          <div class="partner-country-txt">🇲🇾 Malaysia</div>
+          <span class="partner-tag-pill">International University Partner</span>
+        </div>
+
+        <!-- Partner 2: IIIT -->
+        <div class="pro-partner-card">
+          <div class="partner-crest" style="background: #eff6ff; color: #2563eb; border-color: #bfdbfe;">IIIT</div>
+          <h4 class="partner-title-txt">Indian Institute of Information Tech</h4>
+          <div class="partner-country-txt">🇮🇳 India</div>
+          <span class="partner-tag-pill">AI & Geospasial Research</span>
+        </div>
+
+        <!-- Partner 3: Kansas City -->
+        <div class="pro-partner-card">
+          <div class="partner-crest" style="background: #ecfdf5; color: #059669; border-color: #a7f3d0;">KC</div>
+          <h4 class="partner-title-txt">Kansas City Global Initiative</h4>
+          <div class="partner-country-txt">🇺🇸 United States</div>
+          <span class="partner-tag-pill">International Alliance Partner</span>
+        </div>
+
+        <!-- Partner 4: UGM -->
+        <div class="pro-partner-card">
+          <div class="partner-crest" style="background: #fefce8; color: #ca8a04; border-color: #fef08a;">UGM</div>
+          <h4 class="partner-title-txt">Universitas Gadjah Mada</h4>
+          <div class="partner-country-txt">🇮🇩 Indonesia</div>
+          <span class="partner-tag-pill">Academic & Innovation Partner</span>
+        </div>
+
+        <!-- Partner 5: WWF -->
+        <div class="pro-partner-card">
+          <div class="partner-crest" style="background: #f0fdf4; color: #16a34a; border-color: #bbf7d0;">WWF</div>
+          <h4 class="partner-title-txt">WWF Indonesia</h4>
+          <div class="partner-country-txt">🐼 Global Conservation</div>
+          <span class="partner-tag-pill">Conservation & Forestry NGO</span>
+        </div>
+
+        <!-- Partner 6: PT Green Energy -->
+        <div class="pro-partner-card">
+          <div class="partner-crest" style="background: #ecfeff; color: #0891b2; border-color: #a5f3fc;">PGE</div>
+          <h4 class="partner-title-txt">PT Green Energy Indonesia</h4>
+          <div class="partner-country-txt">⚡ Industry Partner</div>
+          <span class="partner-tag-pill">Renewable Energy Corporation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== VIEW 5: ABOUT (STRUKTUR ORGANISASI) ======================== -->
+  <div id="view-about" class="view-content">
+    <div class="view-banner-box">
+      <div class="container">
+        <div class="view-banner-tag">About & Governance</div>
+        <h1 class="view-banner-title">Struktur Organisasi</h1>
+        <p class="view-banner-sub">Tim pimpinan dan pelaksana International Virtual Green Jobs Lab.</p>
+      </div>
+    </div>
+
+    <div class="container org-showcase-wrap">
+      <!-- Tier 1: Leadership -->
+      <div class="org-level-title">Leadership / Pimpinan</div>
+      <div class="org-row-center">
+        <div class="exec-card">
+          <div class="exec-avatar-ring">A</div>
+          <h3 class="exec-name">Arief</h3>
+          <span class="exec-badge">Chairman</span>
+          <p class="exec-desc">Lead Director of International Virtual Green Jobs Lab.</p>
+        </div>
+      </div>
+
+      <!-- Tier 2: Secretariat -->
+      <div class="org-level-title">Secretariat / Kesekretariatan</div>
+      <div class="org-row-center">
+        <div class="exec-card" style="border-top-color: var(--accent-mint);">
+          <div class="exec-avatar-ring" style="background: linear-gradient(135deg, #07503e, #22c59b);">F</div>
+          <h3 class="exec-name">Firman</h3>
+          <span class="exec-badge" style="background: #dbeafe; color: #1e40af;">Secretariat</span>
+          <p class="exec-desc">Operational, International Partnership & Program Coordination.</p>
+        </div>
+      </div>
+
+      <!-- Tier 3: Staff -->
+      <div class="org-level-title">Staff / Tim Pelaksana</div>
+      <div class="staff-row-5">
+        <!-- Falyn -->
+        <div class="staff-member-card">
+          <div class="staff-avatar">F</div>
+          <h4 class="staff-name">Falyn</h4>
+          <span class="staff-badge">Staff</span>
+        </div>
+
+        <!-- Zia -->
+        <div class="staff-member-card">
+          <div class="staff-avatar">Z</div>
+          <h4 class="staff-name">Zia</h4>
+          <span class="staff-badge">Staff</span>
+        </div>
+
+        <!-- Saufi -->
+        <div class="staff-member-card">
+          <div class="staff-avatar">S</div>
+          <h4 class="staff-name">Saufi</h4>
+          <span class="staff-badge">Staff</span>
+        </div>
+
+        <!-- Lidya -->
+        <div class="staff-member-card">
+          <div class="staff-avatar">L</div>
+          <h4 class="staff-name">Lidya</h4>
+          <span class="staff-badge">Staff</span>
+        </div>
+
+        <!-- Reyvan -->
+        <div class="staff-member-card">
+          <div class="staff-avatar">R</div>
+          <h4 class="staff-name">Reyvan</h4>
+          <span class="staff-badge">Staff</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-top-row">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <img src="images/logo.png" alt="IGJVLab logo" style="width: 48px; height: 48px;">
+          <div>
+            <div class="footer-logo-title">IGJVLab</div>
+            <div class="footer-logo-sub">International Green Job Virtual Lab</div>
+          </div>
+        </div>
+
+        <ul class="footer-nav-list">
+          <li><a onclick="navTo('home')">Home</a></li>
+          <li><a onclick="navTo('jobs')">Green Jobs</a></li>
+          <li><a onclick="navTo('project')">Projects</a></li>
+          <li><a onclick="navTo('network')">Network</a></li>
+          <li><a onclick="navTo('about')">Struktur Organisasi</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bot-row">
+        <div>&copy; International Virtual Green Jobs Lab. All rights reserved.</div>
+        <div class="footer-handwritten">"Green Skills, Green Opportunities, Global Impact"</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Dialog: Auth (Login & Register) -->
+  <div class="app-modal-backdrop" id="authBox" onclick="closeAuthModal(event)">
+    <div class="app-modal-window" onclick="event.stopPropagation()">
+      <button class="modal-exit-btn" onclick="closeAuthModal()">&times;</button>
+
+      <div class="auth-two-col">
+        <!-- Left: Login -->
+        <div>
+          <h3 class="auth-header-title">Welcome Back!</h3>
+          <div class="auth-header-sub">Login to your IGJVLab account</div>
+          <input type="text" class="auth-text-field" placeholder="Email or Username">
+          <input type="password" class="auth-text-field" placeholder="Password">
+          <div style="font-size: 12.5px; color: var(--primary-light); text-align: right; margin-bottom: 14px; cursor: pointer;">
+            Forgot password?
+          </div>
+          <button class="btn-auth-action" onclick="alert('Berhasil login ke akun IGJVLab!'); closeAuthModal();">Login</button>
+        </div>
+
+        <!-- Right: Register by role -->
+        <div style="border-left: 1px solid #e1eee7; padding-left: 32px;">
+          <h4 class="auth-header-title" style="font-size: 19px;">New to IGJVLab?</h4>
+          <div class="auth-header-sub">Register and choose your account type:</div>
+          <div class="role-select-list">
+            <button class="role-card-opt" onclick="alert('Membuka pendaftaran Student / Learner...'); closeAuthModal();">
+              <span>🎓 Student / Learner</span> <span>›</span>
+            </button>
+            <button class="role-card-opt" onclick="alert('Membuka pendaftaran Professional...'); closeAuthModal();">
+              <span>💼 Professional</span> <span>›</span>
+            </button>
+            <button class="role-card-opt" onclick="alert('Membuka pendaftaran Researcher...'); closeAuthModal();">
+              <span>🔬 Researcher</span> <span>›</span>
+            </button>
+            <button class="role-card-opt" onclick="alert('Membuka pendaftaran Company...'); closeAuthModal();">
+              <span>🏢 Company</span> <span>›</span>
+            </button>
+            <button class="role-card-opt" onclick="alert('Membuka pendaftaran Organization...'); closeAuthModal();">
+              <span>🌐 Organization</span> <span>›</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Dialog: Notification / Info -->
+  <div class="app-modal-backdrop" id="popupBox" onclick="closePopupBox(event)">
+    <div class="app-modal-window" style="max-width: 520px;" onclick="event.stopPropagation()">
+      <button class="modal-exit-btn" onclick="closePopupBox()">&times;</button>
+      <div id="popupContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Tab Navigation & Hash Management
+    function navTo(pageKey) {
+      closeNavigation();
+      document.querySelectorAll('.view-content').forEach(el => el.classList.remove('active-view'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+      const targetView = document.getElementById('view-' + pageKey);
+      const targetBtn = document.getElementById('btn-' + pageKey);
+
+      if (targetView) targetView.classList.add('active-view');
+      if (targetBtn) targetBtn.classList.add('active');
+
+      if (window.history.pushState) {
+        window.history.pushState(null, null, '#' + pageKey);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleNavigation() {
+      const menu = document.getElementById('primaryNavigation');
+      const toggle = document.getElementById('navToggle');
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Buka menu navigasi' : 'Tutup menu navigasi');
+      menu.classList.toggle('is-open', !isOpen);
+    }
+
+    function closeNavigation() {
+      const menu = document.getElementById('primaryNavigation');
+      const toggle = document.getElementById('navToggle');
+      if (!menu || !toggle) return;
+      menu.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Buka menu navigasi');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById('view-' + hash)) {
+        navTo(hash);
+      }
+    });
+
+    // Carbon Calculator Computation Logic
+    function runCalculator() {
+      const km = parseFloat(document.getElementById('rangeKm').value);
+      const kwh = parseFloat(document.getElementById('rangeKwh').value);
+
+      document.getElementById('txtKm').innerText = km + ' km/hari';
+      document.getElementById('txtKwh').innerText = kwh + ' kWh/bulan';
+
+      // Emission factors: 0.18 kg CO2/km, 0.85 kg CO2/kWh
+      const annualKmCo2 = km * 300 * 0.18;
+      const annualKwhCo2 = kwh * 12 * 0.85;
+      const tons = ((annualKmCo2 + annualKwhCo2) / 1000).toFixed(2);
+      const trees = Math.round(tons * 45);
+
+      document.getElementById('calcNumber').innerText = tons + ' Ton CO₂e';
+      document.getElementById('treeEquivalent').innerText = 'Setara dengan emisi yang diserap ' + trees + ' pohon dewasa per tahun.';
+    }
+
+    // PIO Geospasial Popup
+    function showGisPopup(loc, title, cat) {
+      document.getElementById('popupContent').innerHTML = `
+        <div style="font-size: 12px; font-weight: 800; color: #0d6e54; text-transform: uppercase;">PIO Geospasial • ${cat}</div>
+        <h3 style="font-size: 22px; font-weight: 800; color: #04382b; margin: 6px 0 10px 0;">📍 ${loc}</h3>
+        <p style="font-size: 14.5px; color: #486e62; line-height: 1.5; margin-bottom: 22px;">${title}</p>
+        <button class="btn-cta-emerald" style="width: 100%; justify-content: center;" onclick="closePopupBox()">Tutup Peta</button>
+      `;
+      document.getElementById('popupBox').classList.add('active');
+    }
+
+    // Modal Prompts
+    function openAuthModal(mode) {
+      document.getElementById('authBox').classList.add('active');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authBox').classList.remove('active');
+    }
+
+    function closePopupBox() {
+      document.getElementById('popupBox').classList.remove('active');
+    }
+
+    function openApplyPrompt(title, corp) {
+      document.getElementById('popupContent').innerHTML = `
+        <div style="font-size: 12px; font-weight: 800; color: #0d6e54; text-transform: uppercase;">Lamaran Pekerjaan Hijau</div>
+        <h3 style="font-size: 22px; font-weight: 800; color: #04382b; margin: 6px 0 4px 0;">${title}</h3>
+        <div style="font-size: 13.5px; color: #486e62; margin-bottom: 18px;">${corp}</div>
+        <input type="text" class="auth-text-field" placeholder="Nama Lengkap Anda">
+        <input type="email" class="auth-text-field" placeholder="Alamat Email Aktif">
+        <input type="text" class="auth-text-field" placeholder="Tautan LinkedIn / CV Anda">
+        <button class="btn-cta-emerald" style="width: 100%; justify-content: center; margin-top: 8px;" onclick="alert('Lamaran untuk ' + '${title}' + ' berhasil terkirim!'); closePopupBox();">Kirim Lamaran Sekarang</button>
+      `;
+      document.getElementById('popupBox').classList.add('active');
+    }
+
+    function openProjectDetailsModal(title, loc, impact) {
+      document.getElementById('popupContent').innerHTML = `
+        <div style="font-size: 12px; font-weight: 800; color: #0d6e54; text-transform: uppercase;">Proyek Hijau Unggulan</div>
+        <h3 style="font-size: 22px; font-weight: 800; color: #04382b; margin: 8px 0 4px 0;">${title}</h3>
+        <div style="font-size: 13px; color: #486e62; margin-bottom: 16px;">📍 ${loc}</div>
+        <div style="background: #eef7f3; padding: 16px; border-radius: 12px; font-size: 14px; color: #04382b; margin-bottom: 22px; line-height: 1.5;">
+          <strong>Target Dampak:</strong><br>${impact}
+        </div>
+        <button class="btn-cta-emerald" style="width: 100%; justify-content: center;" onclick="closePopupBox()">Tutup Detail</button>
+      `;
+      document.getElementById('popupBox').classList.add('active');
+    }
+
+    function openPartnerModal() {
+      document.getElementById('popupContent').innerHTML = `
+        <div style="font-size: 12px; font-weight: 800; color: #0d6e54; text-transform: uppercase;">Kemitraan Global</div>
+        <h3 style="font-size: 22px; font-weight: 800; color: #04382b; margin: 8px 0 10px 0;">Become an IGJVLab Partner</h3>
+        <p style="font-size: 14px; color: #486e62; line-height: 1.5; margin-bottom: 18px;">
+          Bergabunglah bersama universitas dan institusi global seperti <strong>UiTM</strong>, <strong>IIIT</strong>, <strong>Kansas City</strong>, dan <strong>UGM</strong> untuk memperluas dampak pendidikan dan industri hijau.
+        </p>
+        <input type="text" class="auth-text-field" placeholder="Nama Institusi / Organisasi">
+        <input type="email" class="auth-text-field" placeholder="Email Resmi">
+        <button class="btn-cta-emerald" style="width: 100%; justify-content: center;" onclick="alert('Pengajuan mitra berhasil dikirim!'); closePopupBox();">Kirim Pengajuan</button>
+      `;
+      document.getElementById('popupBox').classList.add('active');
+    }
+
+    function openVideoModal() {
+      document.getElementById('popupContent').innerHTML = `
+        <div style="font-size: 12px; font-weight: 800; color: #0d6e54; text-transform: uppercase;">Video Profil IGJVLab</div>
+        <h3 style="font-size: 20px; font-weight: 800; color: #04382b; margin: 6px 0 14px 0;">Connecting Green Skills to Future Jobs</h3>
+        <div style="background: #032e23; height: 240px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #b8f03b; margin-bottom: 20px;">
+          <div style="text-align: center;">
+            <div style="font-size: 44px; margin-bottom: 8px;">▶️</div>
+            <div style="font-size: 14px; color: #d1fae5;">Interactive Video Overview</div>
+          </div>
+        </div>
+        <button class="btn-cta-emerald" style="width: 100%; justify-content: center;" onclick="closePopupBox()">Tutup Video</button>
+      `;
+      document.getElementById('popupBox').classList.add('active');
+    }
+
+    // ======= DARK MODE TOGGLE =======
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('igjvlab-theme', isDark ? 'dark' : 'light');
+      const btn = document.getElementById('darkModeToggle');
+      if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+    }
+
+    // Apply saved theme on load (default to dark)
+    (function() {
+      const saved = localStorage.getItem('igjvlab-theme');
+      if (saved === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+      window.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('darkModeToggle');
+        if (btn) {
+          btn.textContent = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+        }
+      });
+    })();
+
+    // ======= SLIDING FILTER TAB INDICATOR =======
+    // Initialises a pills-scroll-bar container with:
+    //  • a glider element that slides under the active/hovered tab
+    //  • hover-preview: glider follows cursor, snaps back on mouse-leave
+    //  • click: makes the clicked tab permanently active
+    function initTabGroup(bar) {
+      if (!bar || bar.dataset.gliderInit) return;
+      bar.dataset.gliderInit = '1';
+
+      const pills = Array.from(bar.querySelectorAll('.filter-pill'));
+      if (!pills.length) return;
+
+      // Inject the glider
+      const glider = document.createElement('span');
+      glider.className = 'tab-glider';
+      bar.style.position = 'relative'; // ensure positioning context
+      bar.insertBefore(glider, bar.firstChild);
+
+      let activeTab = pills.find(p => p.classList.contains('active')) || pills[0];
+
+      // Position helper: measures a pill relative to the scroll-bar
+      function rectOf(pill) {
+        const barRect  = bar.getBoundingClientRect();
+        const pillRect = pill.getBoundingClientRect();
+        return {
+          left:  pillRect.left - barRect.left + bar.scrollLeft,
+          top:   pillRect.top  - barRect.top,
+          width: pillRect.width,
+          height: pillRect.height,
+        };
+      }
+
+      // Move glider to a given pill (with animation via CSS transition)
+      function moveGlider(pill, instant) {
+        const r = rectOf(pill);
+        if (instant) {
+          glider.style.transition = 'none';
+          requestAnimationFrame(() => { glider.style.transition = ''; });
+        }
+        glider.style.left   = r.left   + 'px';
+        glider.style.top    = r.top    + 'px';
+        glider.style.width  = r.width  + 'px';
+        glider.style.height = r.height + 'px';
+      }
+
+      // Mark a pill as visually active (text colour)
+      function setActive(pill) {
+        pills.forEach(p => { p.classList.remove('active', 'pill-hovered'); });
+        pill.classList.add('active');
+        activeTab = pill;
+        moveGlider(pill);
+      }
+
+      // Initial placement without transition
+      moveGlider(activeTab, true);
+
+      // Wire up events on each pill
+      pills.forEach(pill => {
+        // Hover → preview
+        pill.addEventListener('mouseenter', () => {
+          if (pill === activeTab) return; // already there
+          pill.classList.add('pill-hovered');
+          moveGlider(pill);
+        });
+
+        // Leave → snap back to active
+        pill.addEventListener('mouseleave', () => {
+          pill.classList.remove('pill-hovered');
+          if (pill !== activeTab) moveGlider(activeTab);
+        });
+
+        // Click → commit active
+        pill.addEventListener('click', () => {
+          setActive(pill);
+        });
+      });
+
+      // Re-position on window resize (layout may shift)
+      window.addEventListener('resize', () => { moveGlider(activeTab, true); });
+    }
+
+    // Boot all existing pill groups after DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.pills-scroll-bar').forEach(initTabGroup);
+    });
+
+    // Also re-init when user switches views (navTo), in case a bar
+    // was hidden on first paint and had no layout dimensions yet.
+    const _origNavTo = navTo;
+    navTo = function(pageKey) {
+      _origNavTo(pageKey);
+      requestAnimationFrame(function() {
+        document.querySelectorAll('.pills-scroll-bar').forEach(initTabGroup);
+        // Reflow glider for the newly-visible view
+        const view = document.getElementById('view-' + pageKey);
+        if (view) {
+          view.querySelectorAll('.pills-scroll-bar').forEach(bar => {
+            const glider = bar.querySelector('.tab-glider');
+            const activeTab = bar.querySelector('.filter-pill.active');
+            if (glider && activeTab) {
+              // Force re-measure
+              const barRect  = bar.getBoundingClientRect();
+              const pillRect = activeTab.getBoundingClientRect();
+              glider.style.transition = 'none';
+              glider.style.left   = (pillRect.left - barRect.left + bar.scrollLeft) + 'px';
+              glider.style.top    = (pillRect.top  - barRect.top) + 'px';
+              glider.style.width  = pillRect.width  + 'px';
+              glider.style.height = pillRect.height + 'px';
+              requestAnimationFrame(() => { glider.style.transition = ''; });
+            }
+          });
+        }
+      });
+    };
+  </script>
+</body>
+</html>
