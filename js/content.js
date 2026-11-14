@@ -10,7 +10,9 @@
 
   function safeUrl(value, fallback = "") {
     try {
-      const url = new URL(value, window.location.href);
+      const candidate = typeof value === "string" && value.trim() ? value.trim() : fallback;
+      if (!candidate) return "";
+      const url = new URL(candidate, window.location.href);
       return ["http:", "https:"].includes(url.protocol) ? url.href : fallback;
     } catch { return fallback; }
   }
