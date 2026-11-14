@@ -24,6 +24,39 @@
     return Array.isArray(data) ? data : [];
   }
 
+  function openEventDetails(item) {
+    const popup = document.getElementById("popupBox");
+    const content = document.getElementById("popupContent");
+    if (!popup || !content) return;
+
+    content.replaceChildren();
+    const article = el("article", "event-detail-content");
+    article.append(el("div", "event-detail-kicker", item.category || "Dokumentasi kegiatan"));
+    article.append(el("h2", "event-detail-title", item.title || "Kegiatan IGJVLab"));
+
+    const meta = el("div", "event-detail-meta");
+    if (item.date) meta.append(el("span", "", `📅 ${item.date}`));
+    if (item.location) meta.append(el("span", "", `📍 ${item.location}`));
+    if (meta.childElementCount) article.append(meta);
+
+    if (item.image) {
+      const image = el("img", "event-detail-image");
+      image.src = safeUrl(item.image);
+      image.alt = item.title || "Foto kegiatan IGJVLab";
+      image.loading = "lazy";
+      article.append(image);
+    }
+    if (item.summary) article.append(el("p", "event-detail-summary", item.summary));
+    if (item.story) article.append(el("p", "event-detail-story", item.story));
+    if (item.author) {
+      const byline = el("div", "event-detail-byline", "Ditulis oleh ");
+      byline.append(el("strong", "", item.author));
+      article.append(byline);
+    }
+    content.append(article);
+    popup.classList.add("event-details-open", "active");
+  }
+
   function renderEvents(items) {
     const target = document.getElementById("cms-event-list");
     if (!target) return;
@@ -35,6 +68,8 @@
       const image = el("img");
       image.src = safeUrl(item.image, "images/hero.jpg");
       image.alt = item.title || "Foto kegiatan IGJVLab";
+      image.loading = "lazy";
+      image.decoding = "async";
       imageWrap.append(image);
       if (item.category) imageWrap.append(el("span", "event-post-sample-label", item.category));
 
@@ -42,15 +77,13 @@
       const meta = el("div", "event-post-meta");
       if (item.date) meta.append(el("span", "", `📅 ${item.date}`));
       if (item.location) meta.append(el("span", "", `📍 ${item.location}`));
-      const title = el("h3", "", item.title || "Kegiatan IGJVLab");
-      const summary = el("p", "", item.summary || "");
-      body.append(meta, title, summary);
-      if (item.story) body.append(el("p", "", item.story));
-      if (item.author) {
-        const byline = el("div", "event-post-byline", "Ditulis oleh ");
-        byline.append(el("strong", "", item.author));
-        body.append(byline);
-      }
+      body.append(meta, el("h3", "", item.title || "Kegiatan IGJVLab"));
+      if (item.summary) body.append(el("p", "event-post-summary", item.summary));
+      const readButton = el("button", "event-read-more", "Baca selengkapnya →");
+      readButton.type = "button";
+      readButton.addEventListener("click", () => openEventDetails(item));
+      body.append(readButton);
+
       article.append(imageWrap, body);
       target.append(article);
     });
