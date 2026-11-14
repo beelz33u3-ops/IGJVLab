@@ -901,6 +901,10 @@
       flex-shrink: 0;
       font-weight: 800;
     }
+    .cms-card-photo { width: 52px; height: 52px; flex: 0 0 52px; border-radius: 14px; object-fit: cover; border: 1px solid var(--card-border); }
+    .cms-card-description { font-size: 13.5px; color: var(--text-muted); line-height: 1.55; margin: 0 0 20px; }
+    .cms-partner-image { object-fit: contain; padding: 8px; background: #fff; }
+    .cms-partner-description { margin-top: 10px; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
 
     .job-role-name {
       font-size: 18.5px;
@@ -1980,6 +1984,7 @@
     .events-section-heading h2 { color: var(--primary); font-size: 32px; font-weight: 800; letter-spacing: -.6px; }
     .events-section-heading p { margin-top: 7px; color: var(--text-muted); font-size: 15px; }
     .event-post-preview { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); overflow: hidden; border: 1px solid var(--card-border); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-soft); }
+    .cms-event-list { display: grid; gap: 22px; }
     .event-post-image { min-height: 330px; position: relative; background: #dcebe4; }
     .event-post-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .event-post-sample-label { position: absolute; top: 18px; left: 18px; padding: 7px 11px; border-radius: var(--radius-full); background: rgba(3,46,35,.88); color: #c7f9e7; font-size: 10px; font-weight: 800; letter-spacing: .8px; }
@@ -2009,6 +2014,7 @@
       .events-section { padding: 38px 0 58px; }
       .events-section-heading h2 { font-size: 27px; }
       .event-post-preview { grid-template-columns: minmax(0, 1fr); }
+      .cms-event-list { gap: 16px; }
       .event-post-image { min-height: 220px; aspect-ratio: 16 / 10; }
       .event-post-content { padding: 22px 20px; }
       .event-post-content h3 { font-size: 25px; }
@@ -2080,6 +2086,7 @@
             <p>Ikuti kabar dan lihat kembali momen dari kegiatan IGJVLab.</p>
           </div>
         </div>
+        <div id="cms-event-list" class="cms-event-list">
         <article class="event-post-preview">
           <div class="event-post-image">
             <img src="images/hero.jpg" alt="Contoh foto dokumentasi kegiatan">
@@ -2092,6 +2099,7 @@
             <div class="event-post-byline">Ditulis oleh <strong>nama anggota</strong></div>
           </div>
         </article>
+        </div>
       </div>
     </section>
   </div>
@@ -2124,7 +2132,7 @@
         Featured Job Opportunities
       </h3>
 
-      <div class="cards-grid-3">
+      <div class="cards-grid-3" id="cms-job-list">
         <!-- Job 1 -->
         <div class="pro-job-card">
           <div>
@@ -2319,7 +2327,7 @@
         Featured Impact Projects
       </h3>
 
-      <div class="cards-grid-3">
+      <div class="cards-grid-3" id="cms-project-list">
         <!-- Project 1 -->
         <div class="pro-project-card">
           <img src="images/journey.jpg" alt="Mangrove Restoration" class="project-thumb">
@@ -2399,7 +2407,7 @@
         Featured International & National Partners
       </h3>
 
-      <div class="cards-grid-3">
+      <div class="cards-grid-3" id="cms-network-list">
         <!-- Partner 1: UiTM -->
         <div class="pro-partner-card">
           <div class="partner-crest" style="background: #f5f3ff; color: #7c3aed; border-color: #ddd6fe;">UiTM</div>
@@ -2887,5 +2895,7 @@
       });
     };
   </script>
+  <script src="js/content.js" defer></script>
 </body>
 </html>
+
