@@ -1,7 +1,6 @@
 import { getStore } from "@netlify/blobs";
 import { getUser } from "@netlify/identity";
 
-const mediaStore = getStore("igjvlab-media");
 const maxBytes = 4 * 1024 * 1024;
 
 function json(data, status = 200) {
@@ -9,11 +8,14 @@ function json(data, status = 200) {
 }
 
 export default async (request) => {
+  // Netlify rotates the Blobs context token for each invocation. Create a
+  // store for this request so a warm function never reuses an expired token.
+  const mediaStore = getStore("igjvlab-media");
   const url = new URL(request.url);
   const key = url.searchParams.get("key");
 
   if (request.method === "GET") {
-    if (!key || !/^[a-zA-Z0-9_-]+\.(jpg|png|webp)$/.test(key)) return new Response("Not found", { status: 404 });
+    if (!key || !/^[a-zA-Z0-9_-]+\\.(jpg|png|webp)$/.test(key)) return new Response("Not found", { status: 404 });
     const result = await mediaStore.getWithMetadata(key, { type: "arrayBuffer" });
     if (!result?.data) return new Response("Not found", { status: 404 });
     return new Response(result.data, {
@@ -44,4 +46,3 @@ export default async (request) => {
   await mediaStore.set(imageKey, await file.arrayBuffer(), { metadata: { contentType: file.type } });
   return json({ key: imageKey, url: `/.netlify/functions/media?key=${encodeURIComponent(imageKey)}` }, 201);
 };
-
