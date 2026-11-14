@@ -15,7 +15,7 @@ export default async (request) => {
   const key = url.searchParams.get("key");
 
   if (request.method === "GET") {
-    if (!key || !/^[a-zA-Z0-9_-]+\\.(jpg|png|webp)$/.test(key)) return new Response("Not found", { status: 404 });
+    if (!key || !/^[a-zA-Z0-9_-]+\.(jpg|png|webp)$/.test(key)) return new Response("Not found", { status: 404 });
     const result = await mediaStore.getWithMetadata(key, { type: "arrayBuffer" });
     if (!result?.data) return new Response("Not found", { status: 404 });
     return new Response(result.data, {
