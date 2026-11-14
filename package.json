@@ -1,0 +1,10 @@
+{
+  "name": "igjvlab-site",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.9",
+    "@netlify/identity": "^2.0.1"
+  }
+}
+
