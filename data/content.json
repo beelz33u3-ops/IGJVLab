@@ -1,0 +1,22 @@
+{
+  "events": [],
+  "jobs": [
+    {"id":"job-environmental-data-analyst","title":"Environmental Data Analyst","company":"GreenTech Solutions","type":"Full Time","location":"Jakarta, Indonesia","category":"Data & Sensors","description":"Menganalisis emisi dan sensor lingkungan menggunakan platform analisis spasial terintegrasi untuk perusahaan multinasional.","applyUrl":"","image":""},
+    {"id":"job-renewable-energy-intern","title":"Renewable Energy Intern","company":"SolarFuture Energy","type":"Internship","location":"Remote / Hybrid","category":"Solar & Wind","description":"Membantu perancangan sistem mikrogrid surya dan simulasi efisiensi energi terbarukan komunitas binaan.","applyUrl":"","image":""},
+    {"id":"job-sustainability-specialist","title":"Sustainability Specialist","company":"EcoLife Solutions","type":"Full Time","location":"Bali, Indonesia","category":"Circular Economy","description":"Memimpin audit keberlanjutan rantai pasok dan implementasi daur ulang sampah sirkular sektor pariwisata.","applyUrl":"","image":""}
+  ],
+  "projects": [
+    {"id":"project-mangrove-restoration","title":"Mangrove Restoration Program","location":"West Sumatra, Indonesia","tags":["Environment","Conservation"],"description":"Restorasi ekosistem pesisir untuk penyerapan karbon biru dan perlindungan abrasi pantai melibatkan nelayan lokal.","details":"Target penyerapan 1,200 Ton CO2e/tahun dan pelibatan 35 pemuda pesisir.","image":"images/journey.jpg"},
+    {"id":"project-solar-panel-installation","title":"Solar Panel Installation","location":"Lombok, Indonesia","tags":["Renewable Energy","Community"],"description":"Penyediaan listrik mikrogrid surya mandiri untuk fasilitas sekolah dan sentra pengeringan hasil tani desa.","details":"Kapasitas 150 kWp, memangkas biaya energi desa hingga 45%.","image":"images/module1.jpg"},
+    {"id":"project-sustainable-agriculture","title":"Sustainable Agriculture Research","location":"Yogyakarta, Indonesia","tags":["Agriculture","Research"],"description":"Pengembangan pupuk organik berbasis limbah biomassa dan pemantauan IoT kelembaban tanah bersama peneliti kampus.","details":"Riset gabungan bersama kampus mitra untuk pemulihan tanah kritis.","image":"images/module2.jpg"}
+  ],
+  "network": [
+    {"id":"network-uitm","name":"Universiti Teknologi MARA","shortName":"UiTM","country":"🇲🇾 Malaysia","category":"International University Partner","image":""},
+    {"id":"network-iiit","name":"Indian Institute of Information Tech","shortName":"IIIT","country":"🇮🇳 India","category":"AI & Geospasial Research","image":""},
+    {"id":"network-kansas-city","name":"Kansas City Global Initiative","shortName":"KC","country":"🇺🇸 United States","category":"International Alliance Partner","image":""},
+    {"id":"network-ugm","name":"Universitas Gadjah Mada","shortName":"UGM","country":"🇮🇩 Indonesia","category":"Academic & Innovation Partner","image":""},
+    {"id":"network-wwf","name":"WWF Indonesia","shortName":"WWF","country":"🐼 Global Conservation","category":"Conservation & Forestry NGO","image":""},
+    {"id":"network-pt-green-energy","name":"PT Green Energy Indonesia","shortName":"PGE","country":"⚡ Industry Partner","category":"Renewable Energy Corporation","image":""}
+  ]
+}
+
