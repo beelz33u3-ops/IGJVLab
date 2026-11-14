@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pengelola Konten | IGJVLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">IGJVLab <span>Pengelola Konten</span></a>
+    <div class="account-actions"><span id="user-label">Belum login</span><button id="login-button" class="button button-light" type="button">Login pengelola</button><button id="logout-button" class="button button-light" type="button" hidden>Keluar</button></div>
+  </header>
+
+  <main class="page-shell">
+    <section id="login-notice" class="notice-card">
+      <h1>Kelola konten IGJVLab</h1>
+      <p>Login untuk menambah dokumentasi kegiatan, peluang kerja, proyek, dan anggota network. Kamu bisa mengunggah foto langsung dari HP atau laptop.</p>
+      <p class="muted">Akses hanya untuk pengelola yang diundang di Netlify.</p>
+      <button id="login-button-main" class="button button-primary" type="button">Login pengelola</button>
+    </section>
+
+    <section id="cms-app" hidden>
+      <div class="intro-row"><div><p class="eyebrow">DASHBOARD</p><h1>Konten website</h1><p class="muted">Pilih bagian, lalu tambah atau edit kontennya. Desain website akan tetap mengikuti template IGJVLab.</p></div><a class="button button-light" href="/" target="_blank" rel="noopener">Lihat website ↗</a></div>
+      <div id="status-message" class="status-message" role="status" hidden></div>
+      <div class="workspace">
+        <nav class="section-nav" aria-label="Bagian konten">
+          <button type="button" class="section-button active" data-section="events">Dokumentasi</button>
+          <button type="button" class="section-button" data-section="jobs">Green Jobs</button>
+          <button type="button" class="section-button" data-section="projects">Projects</button>
+          <button type="button" class="section-button" data-section="network">Network</button>
+        </nav>
+        <section class="content-panel">
+          <div class="panel-heading"><div><p id="section-eyebrow" class="eyebrow">HALAMAN DEPAN</p><h2 id="section-title">Dokumentasi kegiatan</h2></div><button id="new-entry-button" class="button button-primary" type="button">+ Tambah konten</button></div>
+          <div id="entry-list" class="entry-list"></div>
+          <form id="entry-form" class="entry-form" hidden>
+            <div class="form-heading"><h3 id="form-title">Konten baru</h3><button id="cancel-form-button" class="icon-button" type="button" aria-label="Tutup form">×</button></div>
+            <div id="form-fields" class="form-fields"></div>
+            <div class="form-actions"><button id="cancel-form-button-bottom" class="button button-light" type="button">Batal</button><button class="button button-primary" type="submit">Simpan konten</button></div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
