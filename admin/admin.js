@@ -264,9 +264,10 @@
       const response = await authenticatedFetch(`${api}/media`, { method: "POST", body });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Gagal mengunggah gambar.");
-      formImageUrl = result.url;
-      urlInput.value = result.url;
-      preview.src = result.url;
+      const imageUrl = new URL(result.url, window.location.href).href;
+      formImageUrl = imageUrl;
+      urlInput.value = imageUrl;
+      preview.src = imageUrl;
       preview.hidden = false;
       showStatus("Gambar berhasil diunggah. Simpan konten untuk menerapkan perubahan.");
     } catch (error) { showStatus(error.message || "Gagal mengunggah gambar.", true); }
